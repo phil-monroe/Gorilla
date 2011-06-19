@@ -1,0 +1,23 @@
+Application General Prefs (/Library/Preferences/com.munki.gorilla)
+===============
+* Server location
+* Server authentication
+* Logfile Location
+* Logfile Refresh time
+* Logging level
+* Report time
+* App config location
+* Default Move Location
+
+
+
+
+
+
+
+
+
+
+Runtime Config
+===============
+* Application config (config.plist)

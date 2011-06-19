@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>blocked_applications</key>
+		<array>
+			<string>com.apple.iChat</string>
+			<string>com.apple.iTunes</string>
+		</array>
+		<key>hazard_applications</key>
+		<array>
+			<string>com.oleganza.gitbox</string>
+		</array>
+	</dict>
+</plist>
