@@ -15,9 +15,10 @@ class NotificationHandler
   
   
   
+  
   def will_launch_application(notification)
     app_name  = notification.userInfo["NSApplicationName"]
-    bundle_id  = notification.userInfo["NSApplicationBundleIdentifier"]
+    bundle_id = notification.userInfo["NSApplicationBundleIdentifier"]
     pid       = notification.userInfo["NSApplicationProcessIdentifier"]
     if app_name == "Gorilla" && bundle_id == "com.primates.gorilla"
       return
@@ -31,18 +32,14 @@ class NotificationHandler
       
     when AppType::BLOCK
       kill_app(pid)
-      run_alert("#{app_name} is a blocked application.", notification.userInfo["NSWorkspaceApplicationKey"])
+      run_alert("#{app_name} is a blocked application.", get_app_icon(notification))
       
     when AppType::DELETE
       kill_app(pid)
       `rm -rf #{notification.userInfo["NSApplicationPath"].stringByStandardizingPath}`
-      run_alert("#{app_name} is a blocked application and will be uninstalled.", notification.userInfo["NSWorkspaceApplicationKey"])
+      run_alert("#{app_name} is a blocked application and will be uninstalled.", get_app_icon(notification))
       
-      # Icon from dying app
-      # Localization apps
-      # 
-      
-      
+      # Localization apps      
     when AppType::QUARANTINE
       kill_app(pid)      
     else
@@ -63,12 +60,17 @@ class NotificationHandler
     end
   end
   
+  
+  
+  
   def did_terminate_application(notification)
     app_type = application_type(notification)
     if app_type == AppType::LOG 
       log("terminated_app", notification, app_type)
     end
   end
+  
+  
   
   def will_analalyze_stats(notification)
     

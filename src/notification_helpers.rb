@@ -28,9 +28,6 @@ module NotificationHelpers
     pid       = notification.userInfo["NSApplicationProcessIdentifier"]
     bundleID  = notification.userInfo["NSApplicationBundleIdentifier"]
     path      = notification.userInfo["NSApplicationPath"]
-    # if @logged_apps[pid] == bundleID
-    #   return AppType::LOG
-    # end
 
     @app_config.each_value do |app|
       if app["ApplicationBundleID"] == bundleID || app["ApplicationName"] == app_name
@@ -76,12 +73,22 @@ module NotificationHelpers
     File.open(log_path, 'a') {|f| f.write(log_text) }
   end
   
-  def run_alert(text, dying_app)
+  def run_alert(text, icon)
     alert = NSAlert.alloc.init
     alert.setMessageText(text)
     alert.addButtonWithTitle("OK")
-    # alert.setIcon(dying_app.icon)
-    # NSWorkspace.sharedWorkspace.currentApplication.activateWithOptions(NSApplicationActivateIgnoringOtherApps)
+    alert.setIcon(icon)
     alert.runModal
+  end
+  
+  def get_app_icon(notif)
+    if notif.userInfo["NSWorkspaceApplicationKey"].icon
+      notif.userInfo["NSWorkspaceApplicationKey"].icon
+    else
+      app_path = notif.userInfo["NSApplicationPath"]
+      icon_path = Hash.dictionaryWithContentsOfFile("#{app_path}/Contents/Info.plist")["CFBundleIconFile"] + ".icns"
+      icon_path = app_path + "/Contents/Resources/" + icon_path
+      NSImage.alloc.initWithContentsOfFile icon_path
+    end
   end
 end
