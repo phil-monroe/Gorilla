@@ -91,4 +91,9 @@ module NotificationHelpers
       NSImage.alloc.initWithContentsOfFile icon_path
     end
   end
+  
+  
+  def localize(key, val = nil)
+    NSBundle.mainBundle.localizedStringForKey(key, value:val, table:nil)
+  end
 end

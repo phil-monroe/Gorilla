@@ -1,0 +1,11 @@
+/* Insert Element menu item */
+"Insert Element" = "Insert Element";
+
+/* Error string used for unknown error types. */
+"ErrorString_1" = "An unknown error occurred.";
+
+/* App is removeable. */
+" is a blocked application and will be uninstalled." = " is a blocked application and will be uninstalled.";
+
+/* App is blocked. */
+" is a blocked application." = " is a blocked application.";

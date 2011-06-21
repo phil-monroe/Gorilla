@@ -32,12 +32,12 @@ class NotificationHandler
       
     when AppType::BLOCK
       kill_app(pid)
-      run_alert("#{app_name} is a blocked application.", get_app_icon(notification))
+      run_alert(app_name + localize(' is a blocked application.'), get_app_icon(notification))
       
     when AppType::DELETE
       kill_app(pid)
       `rm -rf #{notification.userInfo["NSApplicationPath"].stringByStandardizingPath}`
-      run_alert("#{app_name} is a blocked application and will be uninstalled.", get_app_icon(notification))
+      run_alert(app_name + localize(' is a blocked application and will be uninstalled.'), get_app_icon(notification))
       
       # Localization apps      
     when AppType::QUARANTINE
@@ -73,8 +73,6 @@ class NotificationHandler
   
   
   def will_analalyze_stats(notification)
-    
-    
   end
 
 end
