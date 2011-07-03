@@ -93,7 +93,7 @@ module NotificationHelpers
   end
   
   
-  def localize(key, val = nil)
-    NSBundle.mainBundle.localizedStringForKey(key, value:val, table:nil)
+  def localize(key, val = nil, tableName = nil)
+    NSBundle.mainBundle.localizedStringForKey(key, value:val, table:table)
   end
 end
